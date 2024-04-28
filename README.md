@@ -12,3 +12,5 @@ USE webleetcode;
 
 // start client. Go to client folder.
 npm start
+
+// Press F12 to look at network information
