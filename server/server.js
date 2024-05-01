@@ -1,21 +1,25 @@
 const express = require("express");
 const cors = require("cors");
 const mysql = require("mysql");
+const dbConfig = require("./dbconfig"); // dbconfig.js file contains my database connection information.
+// const dbConfig = {
+//   connectionLimit: 10,
+//   host: "",
+//   user: "",
+//   password: "",
+//   database: "",
+// };
+
+// module.exports = dbConfig;
 
 const app = express();
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader("Access-Control-Allow-Origin", "*");
   next();
 });
 
 // Set up your routes and middleware here
-const pool = mysql.createPool({
-  connectionLimit: 10,
-  host: "34.123.247.249",
-  user: "root",
-  password: "Winston128",
-  database: "webleetcode",
-});
+const pool = mysql.createPool(dbConfig); // Use the imported database configuration
 
 app.get("/", (req, res) => {
   res.send("Hello from the backend!");
